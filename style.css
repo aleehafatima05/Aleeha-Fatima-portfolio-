@@ -20,10 +20,9 @@ footer{padding:28px 0;color:#818398;font-size:11px}.foot{display:flex;justify-co
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;z-index:50;font-weight:700}.skip:focus{top:12px}
 .tl{color:var(--violet);font-weight:700}.tl:hover{text-decoration:underline}
-.span2{grid-column:1/-1}.results{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.span2{grid-column:1/-1}
 .crumb a:hover{text-decoration:underline}
 .menu{display:none;border:1px solid var(--line);background:white;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
-/* profile picture slot: add profile.jpg to the folder and it appears automatically */
 .hero-flex{position:relative;z-index:1;display:grid;grid-template-columns:1.35fr .65fr;gap:48px;align-items:center}
 .hero-flex .hero-inner{max-width:none}
 .photo{position:relative;width:min(340px,100%);aspect-ratio:4/5;margin-inline:auto;border-radius:34px;overflow:hidden;background:linear-gradient(150deg,#ece8ff,#dff4ec);border:1px solid #e3def8;box-shadow:0 30px 70px #30265d24,0 0 0 10px #ffffff80}
@@ -41,11 +40,43 @@ footer{padding:28px 0;color:#818398;font-size:11px}.foot{display:flex;justify-co
 .hero-flex{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:42px}
 .hero-inner{max-width:650px}.hero-visual{position:relative;z-index:2;min-width:0}
 .hero-workspace{display:block;width:100%;height:430px;object-fit:cover;object-position:center;border-radius:34px 34px 90px 34px;border:8px solid #ffffffb8;box-shadow:0 28px 70px #30265d24}
-.profile-upload{position:absolute;left:-24px;bottom:22px;display:flex;align-items:center;gap:12px;padding:11px 16px 11px 11px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 38px #30265d20;max-width:260px}
-.profile-avatar{width:54px;height:54px;flex:0 0 54px;border-radius:15px;background:linear-gradient(135deg,#eee9ff,#dff5ee);overflow:hidden;display:grid;place-items:center}
-.profile-avatar:after{content:'AF';font-weight:900;color:var(--violet);font-size:17px}.profile-avatar img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}.profile-avatar.empty img{display:none}
+.profile-avatar:after{content:'AF';font-weight:900;color:var(--violet);font-size:17px}.profile-avatar.empty img{display:none}
 .profile-upload strong,.profile-upload span{display:block}.profile-upload strong{font-size:12px}.profile-upload span{font-size:10px;color:var(--muted);line-height:1.5}.profile-upload code{font-size:10px}
 .about-visual-panel{overflow:hidden}.about-visual{width:100%;height:205px;object-fit:cover;border-radius:16px;margin-bottom:8px}.image-note{font-size:11px!important;margin:0 0 20px;color:var(--muted)}
 .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:12px;top:12px;z-index:99;background:white;padding:10px}
-@media(max-width:850px){.hero-flex{grid-template-columns:1fr;gap:28px}.hero-inner{max-width:760px}.hero-visual{max-width:620px;margin:0 auto;width:100%}.hero-workspace{height:390px}.profile-upload{left:12px}}
-@media(max-width:650px){.hero-flex{gap:25px}.hero-workspace{height:300px;border-radius:24px 24px 60px 24px;border-width:5px}.profile-upload{bottom:12px;max-width:235px;padding:8px 12px 8px 8px}.profile-avatar{width:46px;height:46px;flex-basis:46px}.about-visual{height:180px}}
+@media(max-width:850px){.hero-flex{grid-template-columns:1fr;gap:28px}.hero-inner{max-width:760px}.hero-visual{max-width:620px;margin:0 auto;width:100%}.hero-workspace{height:390px}}
+@media(max-width:650px){.hero-flex{gap:25px}.hero-workspace{height:300px;border-radius:24px 24px 60px 24px;border-width:5px}.about-visual{height:180px}}
+
+
+/* Responsive navigation: prevent desktop links from overflowing on tablets and small laptops */
+@media (max-width: 1100px) {
+  header { position: sticky; }
+  nav { position: relative; }
+  .menu { display: block; flex: 0 0 auto; }
+  .navbtn { display: none; }
+  .links {
+    display: none;
+    position: absolute;
+    top: 66px;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    background: var(--paper);
+    padding: 18px 22px;
+    border: 1px solid var(--line);
+    border-top: 0;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 16px 30px #20213b18;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .links.open { display: flex; }
+}
+@media (min-width: 1101px) {
+  .menu { display: none; }
+  .links { display: flex; }
+}
